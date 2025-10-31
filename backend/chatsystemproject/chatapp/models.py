@@ -17,10 +17,11 @@ class ConversationManager(models.Manager):
 class Conversation(models.Model):
     participants = models.ManyToManyField(User, related_name="conversations")
     created_at = models.DateTimeField(auto_now_add=True)
+
     objects = ConversationManager()
 
     def __str__(self):
-        participants_names = " ,".join(
+        participants_names = ", ".join(
             user.username for user in self.participants.all()
         )
         return f"Conversation with {participants_names}"
@@ -35,4 +36,4 @@ class Message(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"Messaeges from {self.sender.username} in {self.content[:20]}"
+        return f"Message from {self.sender.username}: {self.content[:20]}"
