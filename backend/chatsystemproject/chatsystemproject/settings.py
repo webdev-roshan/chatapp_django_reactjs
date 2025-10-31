@@ -30,7 +30,7 @@ INSTALLED_APPS = [
     "channels",
     "rest_framework",
     "corsheaders",
-    "rest_framewrok_simplejwt",
+    "rest_framework_simplejwt",
 ]
 
 MIDDLEWARE = [
@@ -75,14 +75,15 @@ CHANNEL_LAYERS = {
 }
 
 REST_FRAMEWORK = {
-    "DEFAULT_AUTHNETICATION_CLASSES"(
-        "rest_framework_simplejwt.authentication.JWTAuthentication"
-    )
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ),
 }
+
 
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(days=1),
-    "REFRESh_TOKEN_LIFETIME": timedelta(days=30),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=30),
 }
 
 CORS_ALLOWED_ORIGINS = [
